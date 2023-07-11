@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.12)
-project(simplecuda C CXX CUDA)
+#project(simplecuda C CXX CUDA)
+project(simplecuda)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CUDA_TOOLKIT_ROOT_DIR "/usr/local/cuda/")
 
 set(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})

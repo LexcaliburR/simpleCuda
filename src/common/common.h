@@ -14,6 +14,7 @@
 #include "common/check_utils.h"
 #include "common/timer.h"
 
+#define DIVUP(x, y) (x - 1) / y + 1
 
 namespace simplecuda {
 
