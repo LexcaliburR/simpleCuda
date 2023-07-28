@@ -7,6 +7,10 @@ set(CUDA_TOOLKIT_ROOT_DIR "/usr/local/cuda/")
 
 set(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
+
 # Add an option to enable/disable CUDA support
 option(USE_CUDA "Enable CUDA support" ON)
 
@@ -23,9 +27,12 @@ endif()
 #set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};--gpu-architecture=all)  # Set your desired GPU architecture
 #set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};--generate-code=arch=compute_86,code=sm_86)  # Set your desired GPU architecture
 
+
+
 add_definitions(-DUSE_CUDA)
 include_directories(${ROOT_DIR}/src ${CUDA_INCLUDE_DIRS})
 
 add_subdirectory(src/common)
 add_subdirectory(src/ops)
+add_subdirectory(examples)
 

@@ -11,8 +11,10 @@ __global__ void ArrayAddV1(float* array1, float* array2, float* result) {
     return;
 }
 
-cudaError_t ArrayAddV1Launch(float* array1, float* array2, float* result, cudaStream_t stream= nullptr) {
-    ArrayAddV1<<<1, 1>>>(array1, array2, result);
+cudaError_t ArrayAddV1Launch(float* array1, float* array2, size_t size, float* result, cudaStream_t stream= nullptr) {
+    ArrayAddV1<<<DIVUP(size, 512), 512>>>(array1, array2, result);
+    // ArrayAddV1<<<1, 1>>>(array1, array2, result);
+
     auto err = cudaGetLastError();
     return err;
 }
@@ -53,17 +55,17 @@ int main()
     }
 
     // warm up
-    for(int i = 0; i < 10; i++) {
-        CUDA_CHECK(ArrayAddV1Launch(array1_d, array2_d, result_d))
+    for(int i = 0; i < 4; i++) {
+        CUDA_CHECK(ArrayAddV1Launch(array1_d, array2_d, size, result_d));
     }
 
     cudaStream_t stream_addv1;
     CUDA_CHECK(cudaStreamCreate(&stream_addv1));
 
-    for(int j = 0; j < loop_times; j++) {
+    for(int j = 0; j < 4; j++) {
 //        addv1_timer.Start(stream_addv1);
         addv1_timer.Start();
-        CUDA_CHECK(ArrayAddV1Launch(array1_d, array2_d, result_d))
+        CUDA_CHECK(ArrayAddV1Launch(array1_d, array2_d, size, result_d))
         CUDA_CHECK(cudaDeviceSynchronize());
         addv1_timer.Toc();
 //        addv1_timer.Toc(stream_addv1);
