@@ -15,6 +15,8 @@ set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS})  # Set your desired GPU architecture
 CUDA_ADD_EXECUTABLE(array_add array_add.cu)
 target_link_libraries(array_add ${CUDA_LIBRARIES} common)
 
+add_subdirectory(gemm)
+
 # CUDA_ADD_EXECUTABLE(matrix_add matrix_add.cu)
 # target_link_libraries(matrix_add ${CUDA_LIBRARIES} common)
 
