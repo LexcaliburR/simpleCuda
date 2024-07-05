@@ -13,6 +13,10 @@ set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS})  # Set your desired GPU architecture
 find_package(benchmark)
 find_package(pthread)
 
+set(CUDA_TOOLKIT_ROOT_DIR /usr/local/cuda)
+find_library(CUDA_CUBLAS_LIBRARIES cublas HINTS ${CUDA_TOOLKIT_ROOT_DIR}/lib64)
+list(APPEND CUDA_LIBRARIES ${CUDA_CUBLAS_LIBRARIES})
+
 CUDA_ADD_EXECUTABLE(test_gemm 
     gemm_cpu.cpp
     gemm_cuda_v0.cu
