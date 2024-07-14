@@ -23,8 +23,10 @@ print(transposed_4d.flatten())
 # 从某个维度开始分段，计算tile的数据量，从该维度开始，一直到最后一个维度
 
 # 例1， [0, 1]维度变换，[2, 3]维度不变换
+# src_dims = [4, 2, 4, 32]
+# dist_dims = [32, 2, 4, 4]
 src_dims = [4, 2, 4, 32]
-dist_dims = [32, 2, 4, 4]
+dist_dims = [2, 4, 4, 32]
 k = 4
 cnt = 1
 for i in range(len(src_dims)):
@@ -33,20 +35,20 @@ for i in range(len(src_dims)):
 src_stride = [src_dims[1] * src_dims[2] * src_dims[3], src_dims[2] * src_dims[3], src_dims[3], 1]
 dist_stride = [dist_dims[1] * dist_dims[2] * dist_dims[3], dist_dims[2] * dist_dims[3], dist_dims[3], 1]
 
-tile_size = cnt / k
-tile_shape = [src_dims[0]/k, src_dims[1], src_dims[2], src_dims[3]]
-tile_dist_shape = [dist_dims[0], dist_dims[1], dist_dims[2], dist_dims[3]/k]
+# tile_size = cnt / k
+# tile_shape = [src_dims[0]/k, src_dims[1], src_dims[2], src_dims[3]]
+# tile_dist_shape = [dist_dims[0], dist_dims[1], dist_dims[2], dist_dims[3]]
 # for tile in range(k):
 #     print(f"processing input data [{}, {}]")
 
-dist_index = []
-for i in range(1):
-    for j in range(src_dims[1]):
-        for k in range(src_dims[2]):
-            for l in range(src_dims[3]):
-                idx_src = i * src_stride[0] + j * src_stride[1] + k * src_stride[2] + l * src_stride[3]
-                dist_idx = l * dist_stride[0] + j * dist_stride[1] + k * dist_stride[2] + i * dist_stride[3]
-                dist_index.append(dist_idx)
-                # new_array[dist_idx] = src_4d_platte[idx_src]
+# dist_index = []
+# for i in range(1):
+#     for j in range(src_dims[1]):
+#         for k in range(src_dims[2]):
+#             for l in range(src_dims[3]):
+#                 idx_src = i * src_stride[0] + j * src_stride[1] + k * src_stride[2] + l * src_stride[3]
+#                 dist_idx = l * dist_stride[0] + j * dist_stride[1] + k * dist_stride[2] + i * dist_stride[3]
+#                 dist_index.append(dist_idx)
+#                 # new_array[dist_idx] = src_4d_platte[idx_src]
 
-print(f'min = {min(dist_index)}, max = {max(dist_index)}, size = {len(dist_index)}')
+# print(f'min = {min(dist_index)}, max = {max(dist_index)}, size = {len(dist_index)}')

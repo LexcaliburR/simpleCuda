@@ -55,6 +55,3 @@ for i in range(src_dim0):
             new_array_m2[dist_idx] = src_3d_platte[idx_src]
 
 print(new_array_m2)
-
-
-            
