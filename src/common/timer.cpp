@@ -9,6 +9,7 @@
  */
 #include "common/timer.h"
 #include "common/common.h"
+#include "common/cuda_macros.h"
 
 #include <chrono>
 #include <iostream>
@@ -55,7 +56,8 @@ void LatencyTimer::Toc()
 }
 
 #ifdef USE_CUDA
-void LatencyTimer::Start(cudaStream_t stream) {
+void LatencyTimer::Start(cudaStream_t stream)
+{
     cudaEventRecord(start_, stream);
 }
 void LatencyTimer::Toc(cudaStream_t stream)
@@ -128,7 +130,6 @@ void LatencyTimer::SaveToFile() const
         file << "Mean Delay: " << Mean() << " ms" << std::endl;
         file << "Standard Deviation: " << STD() << " ms" << std::endl;
         file << "SUM Delay: " << SUM() << " ms" << std::endl;
-
 
         if (with_raw_) {
             file << "Raw Data:" << std::endl;

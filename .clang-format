@@ -19,7 +19,7 @@ MaxEmptyLinesToKeep: 1
 # tab宽度
 TabWidth: 4
 
-ColumnLimit: 80
+ColumnLimit: 120
 
 BreakBeforeBraces: Custom
 # 大括号换行，只有当BreakBeforeBraces设置为Custom时才有效
@@ -83,4 +83,4 @@ NamespaceIndentation: None
 #; AlignTrailingComments: true
 
 # 具有特殊意义的注释的正则表达式，该注释不应该被分割为多行
-CommentPragmas: '* @FilePath:'
+#CommentPragmas: '* @FilePath:'

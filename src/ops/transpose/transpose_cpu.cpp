@@ -1,7 +1,7 @@
 #include "transpose.h"
 
 
-void TransposeCPU(const float* A, float* B, const std::vector<int> src_shape, const std::vector<int> axis) {
+void TransposeCPU(const float* A, float* B, const std::vector<int>& src_shape, const std::vector<int>& axis) {
     
     size_t cnt = 1;
     for (auto dim : src_shape) {
@@ -38,7 +38,7 @@ void TransposeCPU(const float* A, float* B, const std::vector<int> src_shape, co
     return;
 }
 
-void TransposeCPUOPENMP(const float* A, float* B, const std::vector<int> src_shape, const std::vector<int> axis) {
+void TransposeCPUOPENMP(const float* A, float* B, const std::vector<int>& src_shape, const std::vector<int>& axis) {
     
     size_t cnt = 1;
     for (auto dim : src_shape) {

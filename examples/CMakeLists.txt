@@ -1,6 +1,5 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.16)
 project(example)
-
 
 
 CUDA_ADD_EXECUTABLE(1_branch_efficiency 1_branch_efficiency/branch_efficiency.cu)

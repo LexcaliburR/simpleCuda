@@ -1,7 +1,8 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.16)
 project(common)
 # Add the source files
-set(SOURCES timer.cpp)
+set(SOURCES timer.cpp
+        cuda_macros.h)
 
 # Add CUDA specific source files if USE_CUDA is enabled
 # if (USE_CUDA)
